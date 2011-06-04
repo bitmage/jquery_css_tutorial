@@ -1,0 +1,117 @@
+INTRODUCTION
+
+The goal of this tutorial is to familiarize you with how websites work.  It's focused on front end (stuff that happens in your browser).  This will expose you to the following technologies:
+
+  - html
+  - css
+  - jquery
+  - browser dev tools
+  - git
+
+We'll use JQuery to learn HTML document structure through EXPERIMENTATION.  Event triggers provide a nice playground for this - you can set them up then immediately go test them out in your browser.
+
+Another way we'll tie into HTML structure is through our CSS stylesheet.  CSS and JQuery both use "CSS selectors" to find elements in your HTML and perform some modification on them.
+
+Browser dev tools such as Firebug for Firefox, the web developer toolbar for IE, and the builtin development features on Safari and Chrome, will also let you examine the page structure and type in ad-hoc commands in the console.
+
+Finally, learning git will give you control over your destiny as a developer.  Without version control, hard drive failures, angry coworkers, or simple mistakes could lead to loss of your hard earned code.  Git is a powerful yet simple to use tool which will allow you to restore your project from any point along your development timeline.  It will be your best friend if you learn to use it well.
+
+GETTING STARTED
+
+I'm most used to the Unix shell commands and will be refering to them.  If you're on a Windows box I recommend Cygwin, which will give you seamless access to these tools.  That said, you can do most of this with a text editor and a web browser.  I won't focus on editors here, so use whatever you feel productive with.
+
+If you don't already have it, you'll need to install git.  See:  http://git-scm.com/
+
+Assuming you have git set up, you can change to whatever directory you want your projects in:
+
+  mkdir ~/Projects
+  cd ~/Projects
+
+And clone the repository:
+
+  git clone git@github.com:atrerus/jquery_css_tutorial.git
+
+This should create a new directory with all the starting files for the tutorial.  `cd` into it and check out the contents:
+
+  cd jquery_css_tutorial
+  ls
+
+PEDAL TO THE FLOOR
+
+Go ahead and open sample.html in your web browser (perhaps ctrl-o, ~/Projects/jquery_css_tutorial/sample.html).  You should see some text and two links.  Play around and see what they do.
+
+Next, open sample.html in your favorite web browser.  The first two lines include our JQuery library and stylesheet.  After that, some HTML for the text and links on the page, and some JQuery code to create the actions for the links.
+
+To break down what the JQuery is doing... The first part uses a CSS selector to find 1 or more elements in the web page:
+
+  $('.trigger')
+
+'$' is an alias for the jQuery function, which finds an HTML element on the page and creates an object out of it that has some nice helper functions for you to use.  We're passing it the CSS selector '.trigger' which finds all elements with a class of 'trigger'.  In our case it's just going to come back with this one:
+
+  <a href="#" class="trigger">Trigger</a>
+
+So that's how we find stuff.  You can check out this page for a complete reference of different selectors you can use:
+
+  http://www.w3.org/TR/CSS2/selector.html
+
+Once you've found the element(s) that you want, you can manipulate them.  In our case, we're going to attach an action that will happen when we click the link:
+
+  $('.trigger').click()
+  
+The 'click' function takes another function as its argument.  That lets you do literally whatever you want when the event is triggered.  In Javascript functions can be passed around like any other object, and can have a name or just be anonymous.  In the example, we're defining an anonymous function:
+
+  $('.trigger').click(function(){})
+
+This means it's a function that takes 0 arguments:
+
+  function()
+
+And when it's triggered it will perform whatever commands are listed in the body:
+
+  {
+    do_something();
+  }
+
+Since the event that triggers this function happened on a specific element, it passes the identity of that element on to our function.  You can access it using `$(this)`:
+
+  {
+    $(this).id; //evaluates to the id of the element the event occured on
+  }
+
+So when you combine all that, you have the ability to manipulate the element that was clicked on:
+
+  $('.trigger').click(function(){
+      $(this).fadeOut();
+      });
+
+If you wanted to, you could also assign a name to your function:
+
+  function foo() {
+    $(this).fadeOut();
+  }
+
+Then you could use it later, as many times as you want:
+
+  $('.trigger').click(foo);
+  $('.bar').click(foo);
+  $('.baz').click(foo);
+
+But if you're only going to use it once, why not leave it anonymous?
+
+EXCERCISES FOR THE READER
+
+  - Look up the Events and Effects documentation on the JQuery website.  Add some events then test them out in your browser to see what they do.
+  - Add some styles in sample.css.  Try changing colors, adding borders, padding, margins.  How are margins and padding different?
+  - Try triggering more than one action on an event.  Refer to other elements on the page.
+
+COMMITING YOUR CHANGES
+
+As you make changes to the files in this directory you can see what files have changed by typing `git status`.  Typing `git diff` will show you all the lines that you've changed.  When you're satisfied with your changes and want to 'lock them in', you can use `git add [filename]` to select the files you want to commit, then `git commit` to save them to your local repository.  Also, `git add .` will add everything contained in the current directory, and `git commit -a` will commit everything that was modified, regardless of whether you have 'added' it.  When you commit, you will be prompted to enter a commit message in your favorite editor.  You can change the editor by typing `git config core.editor [path to your editor]`.
+
+Typically it's good to commit after each significant change you make (e.g. adding nav bar buttons), and add a commit message that reflects the change.  This will help you keep track of your history and later on it will be easier if you want to revert a particular change, or know what was done.
+
+REFERENCES
+
+  jQuery:  http://docs.jquery.com/
+  HTML/CSS:  http://www.w3schools.com/
+  git:  http://git-scm.com/
