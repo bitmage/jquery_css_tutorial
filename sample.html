@@ -1,0 +1,16 @@
+<script type="text/javascript" src="jquery-1.6.1.js"></script>
+<link rel="stylesheet" type="text/css" href="sample.css" />
+
+<p>Hello world!</p>
+<a href="#" class="trigger">Trigger</a>
+<a href="#" class="dostuff">Do Stuff</a>
+
+<script type="text/javascript">
+  $('.trigger').click(function(){
+      $(this).fadeOut();
+      });
+  $('.dostuff').click(function(){
+      console.log(this);
+      $(this).slideUp();
+      });
+</script>
