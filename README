@@ -29,7 +29,7 @@ Assuming you have git set up, you can change to whatever directory you want your
 
 And clone the repository:
 
-  git clone git@github.com:atrerus/jquery_css_tutorial.git
+  git clone git@github.com:bitmage/jquery_css_tutorial.git
 
 This should create a new directory with all the starting files for the tutorial.  `cd` into it and check out the contents:
 
