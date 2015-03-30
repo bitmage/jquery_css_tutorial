@@ -1,0 +1,19 @@
+a {
+  color: red;
+}
+
+#content {
+  float: left;
+}
+
+#stage-commands {
+  margin: auto;
+  width: 200px;
+  padding: 12px;
+}
+
+#stage-commands .command {
+  background-color: rgb(203, 203, 203);
+  padding: 8px;
+  border-radius: 6px;
+}
